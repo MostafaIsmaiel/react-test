@@ -9,6 +9,7 @@ type Props = {
 const SingleTodo = ({ todo }: Props) => {
     const { id, completed, title } = todo;
     const { toggleTodo } = useTodoContext();
+
     return (
         <li key={id}>
             <p
@@ -18,7 +19,13 @@ const SingleTodo = ({ todo }: Props) => {
             >
                 {title}
             </p>
-            <Button onChange={() => toggleTodo(id)}>toggling state</Button>
+            <Button
+                onClick={() => {
+                    toggleTodo(id);
+                }}
+            >
+                toggling state
+            </Button>
         </li>
     );
 };
