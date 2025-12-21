@@ -1,13 +1,8 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import TodosList from './todo/index.tsx';
-import TodoProvider from './todo/todo-provider.tsx';
+import { RouterProvider } from '@tanstack/react-router';
+import { router } from './router.types';
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <TodoProvider>
-            <TodosList />
-        </TodoProvider>
-    </StrictMode>,
+    <RouterProvider router={router} />,
 );
