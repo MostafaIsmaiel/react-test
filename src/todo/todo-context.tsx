@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, type Dispatch } from 'react';
 
 export type Todo = {
     id: number;
@@ -6,10 +6,14 @@ export type Todo = {
     completed: boolean;
 };
 
+export type TodoAction =
+    | { type: 'ADD_TODO'; payload: { title: string } }
+    | { type: 'TOGGLE_TODO'; payload: { id: number } }
+    | { type: 'DELETE_TODO'; payload: { id: number } };
+
 type TodoContextType = {
     todos: Todo[];
-    addTodo: (title: string) => void;
-    toggleTodo: (id: number) => void;
+    dispatch: Dispatch<TodoAction>;
 };
 
 export const TodoContext = createContext<null | TodoContextType>(null);

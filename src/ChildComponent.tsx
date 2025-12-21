@@ -1,11 +1,27 @@
-type Props = {
-    name: string;
-};
+import { useEffect, useState } from 'react';
 
-const ChildComponent = (props: Props) => {
-    const { name } = props;
+const ChildComponent = () => {
+    const [name, setName] = useState('');
 
-    return <div>current name is: {name}</div>;
+    useEffect(() => {
+        console.log('Mount');
+
+        return () => {
+            console.log('Unmount');
+        };
+    }, [name]);
+
+    return (
+        <div>
+            current name is:
+            <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                className="border-border border"
+            />
+        </div>
+    );
 };
 
 export default ChildComponent;

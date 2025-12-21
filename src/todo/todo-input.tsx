@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useTodoContext from './use-todo-context';
 
 const TodoInput = () => {
-    const { addTodo } = useTodoContext();
+    const { dispatch } = useTodoContext();
     const [inputValue, setInputValue] = useState('');
 
     return (
@@ -15,7 +15,16 @@ const TodoInput = () => {
                 onChange={e => setInputValue(e.target.value)}
             />
 
-            <Button onClick={() => addTodo(inputValue)}>Add Todo</Button>
+            <Button
+                onClick={() =>
+                    dispatch({
+                        type: 'ADD_TODO',
+                        payload: { title: inputValue },
+                    })
+                }
+            >
+                Add Todo
+            </Button>
         </div>
     );
 };
